@@ -19,6 +19,7 @@ defmodule Pigeon.APNS.ConfigParser do
   @type config :: Config.t() | JWTConfig.t()
 
   @apns_production_api_uri "api.push.apple.com"
+  @apns_sandbox_api_uri "api.sandbox.push.apple.com"
   @apns_development_api_uri "api.development.push.apple.com"
 
   @spec parse(atom | config_opts) :: config | {:error, :invalid_config}
@@ -54,6 +55,7 @@ defmodule Pigeon.APNS.ConfigParser do
 
   @spec uri_for_mode(atom) :: binary | nil
   def uri_for_mode(:dev), do: @apns_development_api_uri
+  def uri_for_mode(:sandbox), do: @apns_sandbox_api_uri
   def uri_for_mode(:prod), do: @apns_production_api_uri
   def uri_for_mode(_else), do: nil
 end
